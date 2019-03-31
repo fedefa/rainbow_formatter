@@ -34,17 +34,6 @@ describe NyanCatFormatter do
 
     describe 'example_passed' do
       it_behaves_like 'a test'
-
-      it 'should relax Nyan Cat' do
-        @formatter.example_passed(@example)
-        expect(@formatter.nyan_cat).to eq([
-          '_,------,   ',
-          '_|  /\_/\ ',
-          '~|_( ^ .^)  ',
-          ' ""  "" '
-        ].join("\n"))
-      end
-
       it 'should update the scoreboard' do
         expect(@formatter.scoreboard.size).to eq(4)
       end
@@ -58,16 +47,6 @@ describe NyanCatFormatter do
           @formatter.example_pending(@example)
         end.to change(@formatter, :pending_count).by(1)
       end
-
-      it 'should alert Nyan Cat' do
-        @formatter.example_pending(@example)
-        expect(@formatter.nyan_cat).to eq([
-          '_,------,   ',
-          '_|  /\_/\ ',
-          '~|_( o .o)  ',
-          ' ""  "" '
-        ].join("\n"))
-      end
     end
 
     describe 'example_failed' do
@@ -79,25 +58,9 @@ describe NyanCatFormatter do
         end.to change(@formatter, :failure_count).by(1)
       end
 
-      it 'should alert Nyan Cat' do
-        @formatter.example_failed(@example)
-        expect(@formatter.nyan_cat).to eq([
-          '_,------,   ',
-          '_|  /\_/\ ',
-          '~|_( o .o)  ',
-          ' ""  "" '
-        ].join("\n"))
-      end
-
       it 'should kill nyan if the specs are finished' do
         @formatter.example_failed(@example)
         allow(@formatter).to receive(:finished?).and_return(true)
-        expect(@formatter.nyan_cat).to eq([
-          '_,------,   ',
-          '_|  /\_/\ ',
-          '~|_( x .x)  ',
-          ' ""  "" '
-        ].join("\n"))
       end
     end
   end

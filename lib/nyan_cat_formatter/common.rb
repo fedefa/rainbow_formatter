@@ -48,13 +48,13 @@ module NyanCat
     # @return [String] Nyan Cat
     def nyan_cat
       if failed_or_pending? && finished?
-        ascii_cat('x')[@color_index % 2].join("\n") # '~|_(x.x)'
+        ascii_array('x')[@color_index % ascii_array.size].join("\n") # '~|_(x.x)'
       elsif failed_or_pending?
-        ascii_cat('o')[@color_index % 2].join("\n") # '~|_(o.o)'
+        ascii_array('o')[@color_index % ascii_array.size].join("\n") # '~|_(o.o)'
       elsif finished?
-        ascii_cat('-')[@color_index % 2].join("\n") # '~|_(-.-)'
+        ascii_array('-')[@color_index % ascii_array.size].join("\n") # '~|_(-.-)'
       else
-        ascii_cat('^')[@color_index % 2].join("\n") # '~|_(^.^)'
+        ascii_array('^')[@color_index % ascii_array.size].join("\n") # '~|_(^.^)'
       end
     end
 
@@ -67,8 +67,8 @@ module NyanCat
 
     def progress_lines
       [
-        nyan_trail.split("\n").each_with_index.inject([]) do |result, (trail, index)|
-          value = "#{scoreboard[index]}/#{@example_count}:"
+        rainbow_trail.split("\n").each_with_index.inject([]) do |result, (trail, index)|
+          value = "#{scoreboard[index]|| "  "}/#{@example_count}:"
           result << format('%s %s', value, trail)
         end
       ].flatten
@@ -128,7 +128,7 @@ module NyanCat
     # Creates a rainbow trail
     #
     # @return [String] the sprintf format of the Nyan cat
-    def nyan_trail
+    def rainbow_trail
       marks = @example_results.each_with_index.map { |mark, i| highlight(mark) * example_width(i) }
       marks.shift(current_width - terminal_width) if current_width >= terminal_width
       nyan_cat.split("\n").each_with_index.map do |line, _index|
@@ -145,15 +145,14 @@ module NyanCat
     #
     # @param o [String] Nyan's eye
     # @return [Array] Nyan cats
-    def ascii_cat(o = '^')
-      [['_,------,   ',
-        '_|  /\\_/\\ ',
-        "~|_( #{o} .#{o})  ",
-        ' ""  "" '],
-       ['_,------,   ',
-        '_|   /\\_/\\',
-        "^|__( #{o} .#{o}) ",
-        ' " "  " "']]
+    def ascii_array(_o = '^')
+      [['######',
+        '#     # #####  ###### #####   ####',
+        '#     # #    # #      #    # #    #',
+        '######  #    # #####  #####  #    #',
+        '#       #####  #      #    # #    #',
+        '#       #   #  #      #    # #    #',
+        '#       #    # ###### #####   ####']]
     end
 
     # Colorizes the string with raindow colors of the rainbow
@@ -218,7 +217,7 @@ module NyanCat
     #
     # @returns [Boolean] true if failed or pending; false otherwise
     def failed_or_pending?
-      (@failure_count.to_i > 0 || @pending_count.to_i > 0)
+      (@failure_count.to_i.positive? || @pending_count.to_i.positive?)
     end
 
     # Returns the cat length
