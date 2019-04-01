@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NyanCatFormat
+module Formatter
   module Verbose
     def progress_lines
       [

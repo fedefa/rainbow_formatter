@@ -3,16 +3,16 @@
 require 'spec_helper'
 require 'stringio'
 
-describe NyanCatFormatter do
+describe RainbowFormatter do
   before do
     rspec_bin = $PROGRAM_NAME.split('/').last
     @output = StringIO.new
     if rspec_bin == 'rspec'
-      @formatter = NyanCatFormatter.new(@output)
+      @formatter = RainbowFormatter.new(@output)
       @example = RSpec::Core::ExampleGroup.describe.example
     else
       formatter_options = OpenStruct.new(colour: true, dry_run: false, autospec: nil)
-      @formatter = NyanCatFormatter.new(formatter_options, @output)
+      @formatter = RainbowFormatter.new(formatter_options, @output)
       @example = Spec::Example::ExampleProxy.new('should pass')
       @formatter.instance_variable_set(:@example_group, OpenStruct.new(description: 'group'))
     end
@@ -58,7 +58,7 @@ describe NyanCatFormatter do
         end.to change(@formatter, :failure_count).by(1)
       end
 
-      it 'should kill nyan if the specs are finished' do
+      it 'should return finished if the specs are finished' do
         @formatter.example_failed(@example)
         allow(@formatter).to receive(:finished?).and_return(true)
       end

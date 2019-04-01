@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'nyan_cat_formatter'
-require 'nyan_cat_format/music'
+require 'rainbow_formatter'
+require 'formatter/wide'
 
-NyanCatMusicFormatter = Class.new(NyanCatFormatter) do
-  include NyanCatFormat::Music
+RainbowWideFormatter = Class.new(RainbowFormatter) do
+  include Formatter::Wide
 
   RSpec::Core::Formatters.register(self, :example_passed, :example_pending,
                                    :example_failed, :start_dump, :start)

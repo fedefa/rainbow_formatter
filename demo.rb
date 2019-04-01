@@ -3,10 +3,10 @@
 require_relative 'spec/spec_helper'
 require 'stringio'
 
-describe NyanCatFormatter do
+describe RainbowFormatter do
   before do
     @output = StringIO.new
-    @formatter = NyanCatFormatter.new(@output)
+    @formatter = RainbowFormatter.new(@output)
     @formatter.start(2)
     @example = RSpec::Core::ExampleGroup.describe.example
 

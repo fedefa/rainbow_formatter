@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+require 'formatter/common'
 require 'rspec/core/formatters/base_text_formatter'
 require 'ostruct'
 
-class RSpec3 < RSpec::Core::Formatters::BaseTextFormatter
-  include NyanCat::Common
+class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
+  include Formatter::Common
 
   attr_reader :example_name
 
@@ -58,7 +59,7 @@ class RSpec3 < RSpec::Core::Formatters::BaseTextFormatter
 
   def dump_summary(notification)
     duration = notification.duration
-    summary = "\nYou've Nyaned for #{format_duration(duration)}\n".split(//).map { |c| rainbowify(c) }
+    summary = "\nYou've rainbowified for #{format_duration(duration)}\n".split(//).map { |c| rainbowify(c) }
     output.puts summary.join
     output.puts notification.fully_formatted
     dump_commands_to_rerun_failed_examples if respond_to?(:dump_commands_to_rerun_failed_examples)

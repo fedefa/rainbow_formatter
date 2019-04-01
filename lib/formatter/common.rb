@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NyanCat
+module Formatter
   module Common
     ESC      = "\e["
     NND      = "#{ESC}0m"
@@ -46,16 +46,17 @@ module NyanCat
     # Nyan Cat is concerned.
     #
     # @return [String] Nyan Cat
-    def nyan_cat
-      if failed_or_pending? && finished?
-        ascii_array('x')[@color_index % ascii_array.size].join("\n") # '~|_(x.x)'
-      elsif failed_or_pending?
-        ascii_array('o')[@color_index % ascii_array.size].join("\n") # '~|_(o.o)'
-      elsif finished?
-        ascii_array('-')[@color_index % ascii_array.size].join("\n") # '~|_(-.-)'
-      else
-        ascii_array('^')[@color_index % ascii_array.size].join("\n") # '~|_(^.^)'
-      end
+    def ascii_to_display
+      ascii_array[@color_index % ascii_array.size].join("\n")
+      # if failed_or_pending? && finished?
+      #   ascii_array[@color_index % ascii_array.size].join("\n")
+      # elsif failed_or_pending?
+      #   ascii_array[@color_index % ascii_array.size].join("\n")
+      # elsif finished?
+      #   ascii_array[@color_index % ascii_array.size].join("\n")
+      # else
+      #   ascii_array[@color_index % ascii_array.size].join("\n")
+      # end
     end
 
     # Displays the current progress in all Nyan Cat glory
@@ -68,7 +69,7 @@ module NyanCat
     def progress_lines
       [
         rainbow_trail.split("\n").each_with_index.inject([]) do |result, (trail, index)|
-          value = "#{scoreboard[index]|| "  "}/#{@example_count}:"
+          value = "#{scoreboard[index] || '  '}/#{@example_count}:"
           result << format('%s %s', value, trail)
         end
       ].flatten
@@ -88,8 +89,8 @@ module NyanCat
     #
     # @return [Fixnum]
     def current_width
-      # padding_width + example_width + cat_length
-      padding_width + (@current * example_width) + cat_length
+      # padding_width + example_width + ascii_length
+      padding_width + (@current * example_width) + ascii_length
     end
 
     # Gets the padding for the current example count
@@ -131,7 +132,7 @@ module NyanCat
     def rainbow_trail
       marks = @example_results.each_with_index.map { |mark, i| highlight(mark) * example_width(i) }
       marks.shift(current_width - terminal_width) if current_width >= terminal_width
-      nyan_cat.split("\n").each_with_index.map do |line, _index|
+      ascii_to_display.split("\n").each_with_index.map do |line, _index|
         format("%s#{line}", marks.join)
       end.join("\n")
     end
@@ -145,7 +146,7 @@ module NyanCat
     #
     # @param o [String] Nyan's eye
     # @return [Array] Nyan cats
-    def ascii_array(_o = '^')
+    def ascii_array
       [['######',
         '#     # #####  ###### #####   ####',
         '#     # #    # #      #    # #    #',
@@ -220,11 +221,11 @@ module NyanCat
       (@failure_count.to_i.positive? || @pending_count.to_i.positive?)
     end
 
-    # Returns the cat length
+    # Returns the ascii length
     #
     # @returns [Fixnum]
-    def cat_length
-      nyan_cat.split("\n").group_by(&:size).max.first
+    def ascii_length
+      ascii_to_display.split("\n").group_by(&:size).max.first
     end
 
     def success_color(text)

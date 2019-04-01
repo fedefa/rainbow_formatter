@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 require 'stringio'
-require 'nyan_cat_verbose_formatter'
+require 'rainbow_verbose_formatter'
 
-describe NyanCatVerboseFormatter do
+describe RainbowVerboseFormatter do
   before(:all) do
     @output = StringIO.new
     @formatter = described_class.new(@output)

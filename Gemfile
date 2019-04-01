@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in nyan-cat-formatter.gemspec
+# Specify your gem's dependencies in rainbow-formatter.gemspec
 gemspec

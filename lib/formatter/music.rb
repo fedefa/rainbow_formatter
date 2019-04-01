@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NyanCatFormat
+module Formatter
   module Music
     def osx?
       platform.downcase.include?('darwin')
@@ -26,7 +26,7 @@ module NyanCatFormat
       @platform ||= RUBY_PLATFORM
     end
 
-    def nyan_mp3
+    def rainbow_mp3
       File.expand_path('../../data/nyan-cat.mp3', __dir__)
     end
 
@@ -52,7 +52,7 @@ module NyanCatFormat
 
     def linux_player
       %w[mpg321 mpg123].find do |player|
-        kernel.system("which #{player} &>/dev/null && type #{player} &>/dev/null")
+        kernel.system("which #{player} >/dev/null 2>&1 && type #{player} >/dev/null 2>&1")
       end
     end
 
@@ -61,14 +61,14 @@ module NyanCatFormat
       return @music_command if @music_command
 
       if osx?
-        @music_command = "afplay #{nyan_mp3}"
+        @music_command = "afplay #{rainbow_mp3}"
       elsif linux? && linux_player
-        @music_command = "#{linux_player} #{nyan_mp3} &>/dev/null"
+        @music_command = "#{linux_player} #{rainbow_mp3} >/dev/null 2>&1"
       end
     end
 
     def start_music_or_kill(thread)
-      thread.exit unless File.exist?(nyan_mp3) && music_command
+      thread.exit unless File.exist?(rainbow_mp3) && music_command
       loop do
         thread['music_pid'] = kernel.spawn(music_command)
         thread['started_playing'] ||= true
