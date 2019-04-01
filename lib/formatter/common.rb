@@ -27,36 +27,24 @@ module Formatter
 
     def self.included(base)
       base.class_eval do
-        attr_reader :current, :example_results, :color_index, :pending_count, :failure_count,
-                    :example_count
+        attr_reader :current, :example_results, :color_index, :pending_count, :failure_count, :example_count
       end
     end
 
     # Increments the example count and displays the current progress
     #
     # @returns nothing
-    def tick(mark = PASS)
+    def tick(mark: PASS)
       @example_results << mark
       @current = @current > @example_count ? @example_count : @current + 1
       dump_progress
     end
 
-    # Determine which Ascii Nyan Cat to display. If tests are complete,
-    # Nyan Cat goes to sleep. If there are failing or pending examples,
-    # Nyan Cat is concerned.
+    # Determine which Ascii to display.
     #
-    # @return [String] Nyan Cat
+    # @return [String] Ascii to display
     def ascii_to_display
-      ascii_array[@color_index % ascii_array.size].join("\n")
-      # if failed_or_pending? && finished?
-      #   ascii_array[@color_index % ascii_array.size].join("\n")
-      # elsif failed_or_pending?
-      #   ascii_array[@color_index % ascii_array.size].join("\n")
-      # elsif finished?
-      #   ascii_array[@color_index % ascii_array.size].join("\n")
-      # else
-      #   ascii_array[@color_index % ascii_array.size].join("\n")
-      # end
+      ascii_array[@color_index % ascii_array.size].join("\n") # '~|_(x.x)'
     end
 
     # Displays the current progress in all Nyan Cat glory
@@ -140,20 +128,6 @@ module Formatter
     # Times a mark has to be repeated
     def example_width(_item = 1)
       1
-    end
-
-    # Ascii version of Nyan cat. Two cats in the array allow Nyan to animate running.
-    #
-    # @param o [String] Nyan's eye
-    # @return [Array] Nyan cats
-    def ascii_array
-      [['######',
-        '#     # #####  ###### #####   ####',
-        '#     # #    # #      #    # #    #',
-        '######  #    # #####  #####  #    #',
-        '#       #####  #      #    # #    #',
-        '#       #   #  #      #    # #    #',
-        '#       #    # ###### #####   ####']]
     end
 
     # Colorizes the string with raindow colors of the rainbow
