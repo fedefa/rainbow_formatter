@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = 'rainbow-formatter'
   s.version     = '0.1.0'
   s.authors     = ['Federico Farina']
-  s.email       = ['matt@mattsears.com']
-  s.homepage    = 'PENDING'
+  s.email       = ['federicojosefarina@gmail.com']
+  s.homepage    = 'https://github.com/fedefa/rainbow_formatter'
   s.summary     = 'Matt Sears Nyan Cat formatter inspired RSpec formatter!'
   s.description = s.summary
 
