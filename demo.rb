@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'spec/spec_helper'
+require 'rainbow_formatter'
 require 'stringio'
 
 describe RainbowFormatter do
