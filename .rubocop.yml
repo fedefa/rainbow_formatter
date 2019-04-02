@@ -6,6 +6,6 @@ Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
     - '**/*.rake'
-    - '**/spec/*.rb'
+    - './spec/*.rb'
 Metrics/AbcSize:
   Enabled: false

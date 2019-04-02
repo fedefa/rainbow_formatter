@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Federico Farina']
   s.email       = ['federicojosefarina@gmail.com']
   s.homepage    = 'https://github.com/fedefa/rainbow_formatter'
-  s.summary     = 'Matt Sears Nyan Cat formatter inspired RSpec formatter!'
+  s.summary     = 'Nyan Cat formatter inspired RSpec formatter!'
   s.description = s.summary
 
   s.rubyforge_project = 'rainbow-formatter'
@@ -18,7 +18,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ['lib']
 
-  s.add_dependency 'rspec', '>= 2.14.2', '>= 2.99', '< 4'
+  s.add_dependency 'rspec', '>= 3', '< 4'
 
+  s.add_development_dependency 'pry'
   s.add_development_dependency 'rake'
 end
