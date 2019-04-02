@@ -4,7 +4,6 @@ require 'configuration'
 require 'formatter/common'
 require 'rspec/core/formatters/base_text_formatter'
 require 'ostruct'
-require 'pry'
 
 class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
   include Formatter::Common

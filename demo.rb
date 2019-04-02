@@ -11,5 +11,6 @@ describe RainbowFormatter do
     it 'passed specs' do
       expect(0).to eql(0)
     end
+    it 'pending specs' if [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1].sample == 1
   end
 end

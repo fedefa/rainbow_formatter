@@ -47,20 +47,32 @@ module Formatter
       ascii_array[@color_index % ascii_array.size].join("\n") # '~|_(x.x)'
     end
 
-    # Displays the current progress in all Nyan Cat glory
+    # Displays the current progress in all Rainbow glory
     #
     # @return nothing
     def dump_progress
       output.print(progress_lines.join("\n") + eol)
     end
 
+    # Determines line by line tail plus score output
+    #
+    # @return [Array]
     def progress_lines
+      rainbow_trails = rainbow_trail.split("\n")
       [
-        rainbow_trail.split("\n").each_with_index.inject([]) do |result, (trail, index)|
-          value = "#{scoreboard[index] || '  '}/#{@example_count}:"
-          result << format('%s %s', value, trail)
+        rainbow_trails.each_with_index.inject([]) do |result, (trail, index)|
+          value = trail_progress_line_score(index)
+          result << "#{value} #{trail}"
         end
       ].flatten
+    end
+
+    def trail_progress_line_score(trail_index)
+      if scoreboard[trail_index]
+        "#{scoreboard[trail_index]}/#{@example_count}:"
+      else
+        ' ' * "#{scoreboard[0]}/#{@example_count}:".size
+      end
     end
 
     # Determines how we end the trail line. If complete, return a newline etc.
@@ -121,7 +133,7 @@ module Formatter
       marks = @example_results.each_with_index.map { |mark, i| highlight(mark) * example_width(i) }
       marks.shift(current_width - terminal_width) if current_width >= terminal_width
       ascii_to_display.split("\n").each_with_index.map do |line, _index|
-        format("%s#{line}", marks.join)
+        "#{marks.join}#{line}"
       end.join("\n")
     end
 
@@ -203,15 +215,15 @@ module Formatter
     end
 
     def success_color(text)
-      wrap(text, :success)
+      wrap(text, :green)
     end
 
     def pending_color(text)
-      wrap(text, :pending)
+      wrap(text, :yellow)
     end
 
     def failure_color(text)
-      wrap(text, :failure)
+      wrap(text, :red)
     end
 
     def console_code_for(code_or_symbol)
