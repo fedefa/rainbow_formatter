@@ -4,6 +4,7 @@ require 'configuration'
 require 'formatter/common'
 require 'rspec/core/formatters/base_text_formatter'
 require 'ostruct'
+require 'pry'
 
 class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
   include Formatter::Common
@@ -15,7 +16,7 @@ class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def initialize(output)
     super(output)
-    @ascii_array = RainbowFormatter.configuration.ascii_array || default_ascii_array
+    singleton_class.send(:include, RainbowFormatter.configuration.custom)
   end
 
   def self.configuration
@@ -26,35 +27,6 @@ class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
     yield configuration if block_given?
   end
 
-  # rubocop:disable Metrics/MethodLength
-  def default_ascii_array
-    [['   _',
-      '  ( \\',
-      '   \\ \\',
-      '   / /                |\\\\',
-      '  / /     .-`````-.   / ^`-.',
-      '  \\ \\    /         \\_/  {|} `o',
-      "   \\ \\  /   .---.   \\\\ _  ,--'",
-      '    \\ \\/   /     \\,  \\( `^^^',
-      '     \\   \\/\\      (\\  )',
-      '      \\   ) \\     ) \\ \\',
-      "       ) /__ \__  ) (\ \___",
-      '      (___)))__))(__))(__)))'],
-     ['       _',
-      '      / )',
-      '     / /',
-      '    / /               /\\',
-      '   / /     .-```-.   / ^`-.',
-      '   \\ \\    /       \\_/  (|) `o',
-      "    \\ \\  /   .-.   \\\\ _  ,--'",
-      '     \\ \\/   /   )   \\( `^^^',
-      '      \\   \\/    (    )',
-      '       \\   )     )  /',
-      '        ) /__    | (__',
-      '       (___)))   (__)))']]
-  end
-  # rubocop:enable Metrics/MethodLength
-
   def start(notification)
     # TODO: Lazy fix for specs.
     if notification.is_a?(Integer)
@@ -63,7 +35,7 @@ class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
       super(notification)
     end
 
-    @current = @color_index = @passing_count = @failure_count = @pending_count = 0
+    @current = @color_index = @passing_count = @failure_count = @pending_count = @animation_index = 0
     @example_results = []
     @failed_examples = []
     @pending_examples = []

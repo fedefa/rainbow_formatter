@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 module Formatter
   module Common
     ESC      = "\e["
@@ -37,6 +39,7 @@ module Formatter
     def tick(mark: PASS)
       @example_results << mark
       @current = @current > @example_count ? @example_count : @current + 1
+      @animation_index = (@animation_index + 1) % ascii_array.size
       dump_progress
     end
 
@@ -44,7 +47,7 @@ module Formatter
     #
     # @return [String] Ascii to display
     def ascii_to_display
-      ascii_array[@color_index % ascii_array.size].join("\n") # '~|_(x.x)'
+      ascii_array[@animation_index % ascii_array.size]
     end
 
     # Displays the current progress in all Rainbow glory

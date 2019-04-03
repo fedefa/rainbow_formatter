@@ -26,10 +26,6 @@ module Formatter
       @platform ||= RUBY_PLATFORM
     end
 
-    def rainbow_mp3
-      File.expand_path('../../data/nyan-cat.mp3', __dir__)
-    end
-
     def start(input)
       super
       @music_thread = Thread.new { start_music_or_kill(Thread.current) }
