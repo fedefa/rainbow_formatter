@@ -1,4 +1,4 @@
-This is my customization over [Matt Sears](https://github.com/mattsears/nyan-cat-formatter) Nyan Cat RSpec Formatter. It simply creates a rainbow trail of test results. It also counts the number of examples as they execute and highlights failed and pending specs.
+This is my approach over [Matt Sears](https://github.com/mattsears/nyan-cat-formatter) Nyan Cat RSpec Formatter. It simply creates a rainbow trail of test results. It also counts the number of examples as they execute and highlights failed and pending specs.
 
 The rainbow changes colors as it runs. See it in action [here](http://vimeo.com/32424001).
 
@@ -60,7 +60,7 @@ Make sure your .rspec file in your application's root directory contains the fol
 
 ```
 --color
---format RainbowMusicFormatter
+--format RainbowFormatter
 ```
 
 Then run `rspec spec` and enjoy Rainbow formatted text output accompanied by Rainbow song by default!
@@ -80,6 +80,33 @@ Simple use it by configuring it as the RSpec formatter:
 ```
 --format RainbowWideFormatter
 ```
+
+
+Customizing Rainbow
+---------------------------------
+You can create your own version, with your own song and draw, this way:
+
+```ruby
+require 'rainbow_formatter'
+
+module YuorCustomMode
+  def ascii_array
+    'your_ascii_animation'
+  end
+  def rainbow_mp3
+    'your_song_path'
+  end
+end
+
+RainbowFormatter.configure do |config|
+  config.custom = Formatter::YourCustomMode
+end
+```
+
+#### Already bundled modes:
+
+1. Formatter::Custom::Car
+2. Formatter::Custom::Dog
 
 Contributing
 ----------
