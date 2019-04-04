@@ -4,7 +4,7 @@ require_relative 'spec/spec_helper'
 
 describe RainbowFormatter do
   before do
-    sleep(0.1) # Just to slow it down a little :-)
+    sleep(0.25) # Just to slow it down a little :-)
   end
 
   100.times do
