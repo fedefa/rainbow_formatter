@@ -2,7 +2,7 @@
 
 module Formatter
   module Custom
-    module Bear
+    module Monkey
       # rubocop:disable Metrics/LineLength
       def ascii_array
         ["     .-\"-. \r\n   _/.-.-.\\\r\n  /|( o o )|\\\r\n | //  \"  \\\\ |\r\n/ / \\'---'/ \\ \\\r\n\\ \\_/`\"\"\"`\\_/ /\r\n \\           /",
