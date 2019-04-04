@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 module Formatter
   module Common
     ESC      = "\e["
@@ -107,10 +105,11 @@ module Formatter
     #
     # @return [Fixnum]
     def terminal_width
-      default_width = if defined? JRUBY_VERSION
+      stty_size = `stty size`
+      default_width = if defined? JRUBY_VERSION || !stty_size
                         80
                       else
-                        `stty size`.split.map(&:to_i).reverse.first - 1
+                        stty_size.split.map(&:to_i).reverse.first - 1
                       end
       @terminal_width ||= default_width
     end
