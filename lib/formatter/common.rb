@@ -105,7 +105,7 @@ module Formatter
     #
     # @return [Fixnum]
     def terminal_width
-      stty_size = `stty size`
+      stty_size = Kernel.system('stty size >/dev/null 2>&1')
       default_width = if defined? JRUBY_VERSION || !stty_size
                         80
                       else
