@@ -1,10 +1,12 @@
 Customizable Rainbow trail RSpec formatter.
 
-PENDING: Here goes mode gifs.
+![](data/car.gif)
+![](data/monkey.gif)
+![](data/dog.gif)
 
 It´s based on [Matt Sears](https://github.com/mattsears/nyan-cat-formatter) great Nyan Cat RSpec Formatter. It simply creates a rainbow trail of test results. It also counts the number of examples as they execute and highlights failed and pending specs.
 
-The rainbow changes colors as it runs. See it in action [here](http://vimeo.com/32424001).
+The rainbow changes colors as it runs!.
 
 Works with RSpec 3.x
 
@@ -24,7 +26,7 @@ so that you won't have to specify the `--format` option everytime you run the co
 --format RainbowFormatter
 ```
 
-#### With music formatter .rspec file
+#### Music formatter .rspec file
 ```
 --color
 --format RainbowMusicFormatter
@@ -33,6 +35,23 @@ so that you won't have to specify the `--format` option everytime you run the co
 Then run `rspec spec` and enjoy Rainbow formatted text output accompanied by Rainbow song by default!
 
 **This currently only works on Mac OS X or on Linux (if you have mpg321 or mpg123 installed).**
+
+#### With running test output
+```
+--color
+--format RainbowVerboseFormatter
+```
+
+Displays "running" line with name of test on the first line.
+
+
+#### With failed test output
+```
+--color
+--format RainbowInstaFailFormatter
+```
+
+Displays failed tests immediately!
 
 
 ### Using with Bundler
@@ -46,21 +65,6 @@ end
 ```
 
 And then run `bundle install`.
-
-Using the Rainbow Wide Formatter
----------------------------------
-
-The classic Rainbow Formatter uses a terminal column per test. One
-test, and single step that the cat goes ahead. The **Rainbow Wide
-Formatter**, instead, uses the whole terminal width, so the cat will
-always end up reaching the end of the terminal.
-
-Simple use it by configuring it as the RSpec formatter:
-
-```
---format RainbowWideFormatter
-```
-
 
 Customizing Rainbow
 ---------------------------------
@@ -89,7 +93,7 @@ It's easy to build your array using a string [escape tool](https://www.freeforma
 
 1. Formatter::Custom::Car
 2. Formatter::Custom::Dog
-
+3. Formatter::Custom::Monkey
 
 Contributing
 ----------
