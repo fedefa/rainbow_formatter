@@ -84,6 +84,7 @@ end
 
 RainbowFormatter.configure do |config|
   config.custom = Formatter::YourCustomMode
+  # config.custom = Formatter::Custom::Car or other bundled mode
 end
 ```
 
