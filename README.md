@@ -1,14 +1,17 @@
-Customizable Rainbow trail RSpec formatter.
+Really customizable Rainbow trail RSpec formatter.
 
+![](data/cat.gif)
 ![](data/car.gif)
 ![](data/monkey.gif)
 ![](data/dog.gif)
 
-It´s based on [Matt Sears](https://github.com/mattsears/nyan-cat-formatter) great Nyan Cat RSpec Formatter. It simply creates a rainbow trail of test results. It also counts the number of examples as they execute and highlights failed and pending specs.
+It simply creates a rainbow trail of test results. It also counts the number of examples as they execute and highlights failed and pending specs.
 
 The rainbow changes colors as it runs!.
 
 Works with RSpec 3.x
+
+Based on [Matt Sears](https://github.com/mattsears/nyan-cat-formatter) Nyan Cat RSpec Formatter
 
 Using  Rainbow
 ---------------

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'formatter/custom/car'
+require 'formatter/custom/cat'
 
 class Configuration
   attr_accessor :custom
   def initialize
-    @custom = Formatter::Custom::Car
+    @custom = Formatter::Custom::Cat
   end
 end

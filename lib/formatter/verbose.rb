@@ -3,9 +3,11 @@
 module Formatter
   module Verbose
     def progress_lines
-      [
-        format("%-#{terminal_width}s", finished? ? '' : "running: #{example_name}")
-      ].concat(super)
+      super.concat(
+        [
+          format("%-#{terminal_width}s", finished? ? '' : "running: #{example_name}")
+        ]
+      )
     end
   end
 end
