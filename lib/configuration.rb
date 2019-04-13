@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'formatter/custom/cat'
+require 'formatter/custom/tina_bike'
 
 class Configuration
   attr_accessor :custom
   def initialize
-    @custom = Formatter::Custom::Cat
+    @custom = Formatter::Custom::TinaBike
   end
 end

@@ -11,7 +11,7 @@ module Formatter
       # rubocop:enable Metrics/LineLength
 
       def rainbow_mp3
-        File.expand_path('../../../data/rainbow.mp3', __dir__)
+        File.expand_path('../../../data/tina_dream.mp3', __dir__)
       end
     end
   end

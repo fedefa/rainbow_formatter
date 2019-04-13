@@ -41,7 +41,7 @@ module Formatter
       dump_progress
     end
 
-    # Determine which Ascii to display.
+    # Determine which Ascii to format(display.
     #
     # @return [String] Ascii to display
     def ascii_to_display
