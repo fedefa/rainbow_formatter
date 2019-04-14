@@ -1,9 +1,7 @@
-Really customizable Rainbow trail RSpec formatter.
-
-![](data/cat.gif)
+Fully customizable Rainbow trail RSpec formatter.
+![](data/tina_bike.gif)
+![](data/tina_dream.gif)
 ![](data/car.gif)
-![](data/monkey.gif)
-![](data/dog.gif)
 
 It simply creates a rainbow trail of test results. It also counts the number of examples as they execute and highlights failed and pending specs.
 
@@ -35,7 +33,9 @@ so that you won't have to specify the `--format` option everytime you run the co
 --format RainbowMusicFormatter
 ```
 
-Then run `rspec spec` and enjoy Rainbow formatted text output accompanied by Rainbow song by default!
+Then run `rspec spec` and enjoy Rainbow formatted text output accompanied by Rainbow song by default!.
+
+All music was composed by [Maria Delfina Ciarrochi](https://soundcloud.com/mariadelfinaciarrochi)
 
 **This currently only works on Mac OS X or on Linux (if you have mpg321 or mpg123 installed).**
 
@@ -76,7 +76,7 @@ You can create your own version, with your own song and draw, this way:
 ```ruby
 require 'rainbow_formatter'
 
-module YuorCustomMode
+module YourCustomMode
   def ascii_array
     'your_ascii_animation'
   end
@@ -87,17 +87,19 @@ end
 
 RainbowFormatter.configure do |config|
   config.custom = Formatter::YourCustomMode
-  # config.custom = Formatter::Custom::Car or other bundled mode
+  # config.custom = Formatter::Custom::TinaDream or other bundled mode
 end
 ```
 
-It's easy to build your array using a string [escape tool](https://www.freeformatter.com/java-dotnet-escape.html#ad-output). Each position of array should be an escaped version of chosen ascii and will be used one after the other as an animation. You can view some examples at /lib/formatter/custom folder. [This](https://www.asciiart.eu) is a good start point to choose some asciis.
+It's easy to build your array using a string [escape tool](https://www.freeformatter.com/java-dotnet-escape.html#ad-output). Each position of array should be an escaped version of chosen ascii and could be used one after the other as an animation. You can view some examples at /lib/formatter/custom folder. [This](https://www.asciiart.eu) is a good start point to choose some asciis.
 
 #### Already bundled modes:
 
 1. Formatter::Custom::Car
 2. Formatter::Custom::Dog
 3. Formatter::Custom::Monkey
+4. Formatter::Custom::TinaBike
+5. Formatter::Custom::TinaDream
 
 Contributing
 ----------
@@ -113,3 +115,5 @@ Once you've made your great commits:
 Author
 ----------
 [Federico Farina](https://github.com/fedefa)
+
+[Maria Delfina Ciarrochi](https://soundcloud.com/mariadelfinaciarrochi)

@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 
 Gem::Specification.new do |s|
   s.name        = 'rainbow-formatter'
-  s.version     = '0.2.6'
+  s.version     = '0.2.7'
   s.authors     = ['Federico Farina']
   s.email       = ['federicojosefarina@gmail.com']
   s.homepage    = 'https://github.com/fedefa/rainbow_formatter'
