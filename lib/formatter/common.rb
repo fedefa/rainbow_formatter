@@ -159,11 +159,11 @@ module Formatter
     # @return [Array]
     def colors
       @colors ||= (0...(6 * 7)).map do |n|
-        pi_3 = Math::PI / 3
+        pi3 = Math::PI / 3
         n *= 1.0 / 6
         r  = (3 * Math.sin(n) + 3).to_i
-        g  = (3 * Math.sin(n + 2 * pi_3) + 3).to_i
-        b  = (3 * Math.sin(n + 4 * pi_3) + 3).to_i
+        g  = (3 * Math.sin(n + 2 * pi3) + 3).to_i
+        b  = (3 * Math.sin(n + 4 * pi3) + 3).to_i
         36 * r + 6 * g + b + 16
       end
     end
