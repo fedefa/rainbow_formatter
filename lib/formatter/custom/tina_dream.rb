@@ -2,7 +2,7 @@
 
 module Formatter
   module Custom
-    module Cat
+    module TinaDream
       # rubocop:disable Metrics/LineLength
       def ascii_array
         ["                      \r\n     /\\_____/\\\r\n    /  o   o  \\  \r\n   ( ==  ^  == )\r\n    )          (\r\n   (           )\r\n  ( (  )   (  ) )\r\n (__(__)___(__)__)",
