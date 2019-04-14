@@ -5,8 +5,8 @@ module Formatter
     module TinaBike
       # rubocop:disable Metrics/LineLength
       def ascii_array
-        [" -          /\\**/\\    \n --       _(  o_o )   \n       (_/    u--u)   \n    /==(    ___||)\n   /d\\\"P\\ )=\\d\\\"Pb, \n  8 || ===/8=== || 8|\n  P,    ,d P,    ,d`\n    `\"\"\"     `\"\"\"",
-         " --          /\\**/\\    \n ---       _(  o_o )   \n       (_/    u--u)   \n    /==(    ___||)\n   /d\\\"P\\ )=\\d\\\"Pb, \n  8 || ===/8=== || 8|\n  P,    ,d P,    ,d`\n    `\"\"\"     `\"\"\""]
+        [" -          /\\**/\\    \r\n --       _(  o_o )   \r\n ---   (_/    u--u)   \r\n    /==(    ___||)\r\n   /d\\\"P\\ )=\\d\\\"Pb, \r\n  8 || ===/8=== || 8|  \r\n  P,    ,d P,    ,d`  \r\n    `\"\"\"     `\"\"\"",
+         "  -          /\\**/\\     \n  --       _(  o_o )   \n  ---  (_/    u--u)   \n    /==(    ___||)\n   /d\\\"P\\ )=\\d\\\"Pb, \n  8 || ===/8=== || 8|\n  P,    ,d P,    ,d`\n    `\"\"\"     `\"\"\""]
       end
       # rubocop:enable Metrics/LineLength
 
