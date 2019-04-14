@@ -14,17 +14,7 @@ describe RainbowVerboseFormatter do
     @formatter.start(1)
   end
 
-  it 'displays "running" line with name of test on the first line' do
-    expect(@formatter.progress_lines.first).to include('running: ')
-  end
-
-  context 'this was the last test' do
-    before(:each) do
-      allow(@formatter).to receive(:finished?).and_return(true)
-    end
-
-    it 'should display an empty first line' do
-      expect(@formatter.progress_lines.first.scan(/[^ ]/)).to be_empty
-    end
+  it 'displays "running" line with name of test on the last line' do
+    expect(@formatter.progress_lines.last).to include('running: ')
   end
 end
