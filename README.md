@@ -48,7 +48,7 @@ All music was composed by [Maria Delfina Ciarrochi](https://soundcloud.com/maria
 Displays "running" line with name of test on the first line.
 
 
-#### With failed test output
+#### Display failed tests immediately
 ```
 --color
 --format RainbowInstaFailFormatter
