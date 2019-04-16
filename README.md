@@ -74,11 +74,9 @@ Customizing Rainbow
 You can create your own version, with your own song and draw, this way:
 
 ```ruby
-require 'rainbow_formatter'
-
 module YourCustomMode
   def ascii_array
-    'your_ascii_animation'
+    'your_ascii_animation_array'
   end
   def rainbow_mp3
     'your_song_path'
@@ -86,8 +84,8 @@ module YourCustomMode
 end
 
 RainbowFormatter.configure do |config|
-  config.custom = Formatter::YourCustomMode
-  # config.custom = Formatter::Custom::TinaDream or other bundled mode
+  config.custom = YourCustomMode
+  # OR config.custom = Formatter::Custom::TinaDream or other bundled mode
 end
 ```
 
