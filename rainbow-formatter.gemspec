@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.push File.expand_path('lib', __dir__)
+require 'formatter/version'
 
 Gem::Specification.new do |s|
   s.name        = 'rainbow-formatter'
-  s.version     = Formatter::Version
+  s.version     = Formatter::VERSION
   s.authors     = ['Federico Farina']
   s.email       = ['federicojosefarina@gmail.com']
   s.homepage    = 'https://github.com/fedefa/rainbow-formatter'
