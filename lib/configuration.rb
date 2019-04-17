@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
+require 'formatter/custom/car'
+require 'formatter/custom/dog'
+require 'formatter/custom/monkey'
 require 'formatter/custom/tina_bike'
+require 'formatter/custom/tina_dream'
 
 class Configuration
-  attr_accessor :custom
+  attr_accessor :formatter
+
   def initialize
-    @custom = Formatter::Custom::TinaBike
+    @formatter = Formatter::Custom::TinaBike
   end
 end

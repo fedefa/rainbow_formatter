@@ -2,21 +2,38 @@
 
 require 'configuration'
 require 'formatter/common'
-require 'rspec/core/formatters/base_text_formatter'
 require 'ostruct'
 require 'pry'
 
-class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
+class RainbowFormatter
   include Formatter::Common
 
-  attr_reader :example_name, :ascii_array
+  attr_reader :example_name, :ascii_array, :output
 
-  RSpec::Core::Formatters.register self, :example_started, :example_passed, :example_pending,
-                                   :example_failed, :start_dump, :start
+  RSpec::Core::Formatters.register self, :start, :example_started, :example_passed, :example_pending, :example_failed,
+                                   :start_dump, :dump_summary
+
+  BUNDLED_MODES = {
+    tina_bike: Formatter::Custom::TinaBike,
+    tina_dream: Formatter::Custom::TinaDream,
+    car: Formatter::Custom::Car,
+    dog: Formatter::Custom::Dog,
+    monkey: Formatter::Custom::Monkey
+  }.freeze
 
   def initialize(output)
-    super(output)
-    singleton_class.send(:include, RainbowFormatter.configuration.custom)
+    @output = output
+    @current = @color_index = @passing_count = @failure_count = @pending_count = @animation_index = 0
+    @example_results = []
+    @failed_examples = []
+    @pending_examples = []
+    setup_formatter
+  end
+
+  def setup_formatter
+    formatter = RainbowFormatter.configuration.formatter
+    formatter = BUNDLED_MODES.dig(formatter) unless formatter.is_a?(Module)
+    singleton_class.send(:include, formatter)
   end
 
   def self.configuration
@@ -27,18 +44,17 @@ class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
     yield configuration if block_given?
   end
 
-  def start(notification)
+  def start(start_notification)
     # TODO: Lazy fix for specs.
-    if notification.is_a?(Integer)
-      super(OpenStruct.new(count: notification))
-    else
-      super(notification)
-    end
+    @example_count = if start_notification.is_a?(Integer)
+                       start_notification
+                     else
+                       start_notification.count
+                     end
+  end
 
-    @current = @color_index = @passing_count = @failure_count = @pending_count = @animation_index = 0
-    @example_results = []
-    @failed_examples = []
-    @pending_examples = []
+  def start_dump(_notification)
+    @current = @example_count
   end
 
   def example_started(notification)
@@ -60,10 +76,6 @@ class RainbowFormatter < RSpec::Core::Formatters::BaseTextFormatter
     @failed_examples << notification
     @failure_count += 1
     tick(mark: FAIL)
-  end
-
-  def start_dump(_notification)
-    @current = @example_count
   end
 
   def dump_summary(notification)
