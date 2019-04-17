@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = '0.2.9'
   s.authors     = ['Federico Farina']
   s.email       = ['federicojosefarina@gmail.com']
-  s.homepage    = 'https://github.com/fedefa/rainbow_formatter'
+  s.homepage    = 'https://github.com/fedefa/rainbow-formatter'
   s.summary     = 'Customizable RSpec formatter'
   s.description = 'Customizable ascii-music RSpec formattter'
   s.license = 'MIT'
