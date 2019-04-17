@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'configuration'
+require 'formatter/configuration'
 require 'formatter/common'
 require 'ostruct'
 require 'pry'
@@ -37,7 +37,7 @@ class RainbowFormatter
   end
 
   def self.configuration
-    @configuration ||= Configuration.new
+    @configuration ||= Formatter::Configuration.new
   end
 
   def self.configure

@@ -6,10 +6,12 @@ require 'formatter/custom/monkey'
 require 'formatter/custom/tina_bike'
 require 'formatter/custom/tina_dream'
 
-class Configuration
-  attr_accessor :formatter
+module Formatter
+  class Configuration
+    attr_accessor :formatter
 
-  def initialize
-    @formatter = Formatter::Custom::TinaBike
+    def initialize
+      @formatter = :tina_bike
+    end
   end
 end
