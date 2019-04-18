@@ -63,7 +63,7 @@ To use Rainbow formatter with a project that uses Bundler (Rails or Sinatra f.e.
 
 ```ruby
 group :test do
-  gem "rainbow-formatter"
+  gem "rainbow_formatter"
 end
 ```
 
@@ -84,8 +84,8 @@ module YourCustomMode
 end
 
 RainbowFormatter.configure do |config|
-  config.custom = YourCustomMode
-  # OR config.custom = Formatter::Custom::TinaDream or other bundled mode
+  config.formatter = YourCustomMode
+  # OR config.formatter = :tina_dream OR onw of already bundle modes below
 end
 ```
 
@@ -93,11 +93,11 @@ It's easy to build your array using a string [escape tool](https://www.freeforma
 
 #### Already bundled modes:
 
-1. Formatter::Custom::Car
-2. Formatter::Custom::Dog
-3. Formatter::Custom::Monkey
-4. Formatter::Custom::TinaBike
-5. Formatter::Custom::TinaDream
+1. :car
+2. :dog
+3. :monkey
+4. :tina_bike
+5. :tina_dream
 
 Contributing
 ----------

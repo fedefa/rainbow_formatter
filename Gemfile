@@ -2,5 +2,5 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in rainbow-formatter.gemspec
+# Specify your gem's dependencies in rainbow_formatter.gemspec
 gemspec
