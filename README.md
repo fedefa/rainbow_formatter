@@ -76,7 +76,7 @@ You can create your own version, with your own song and draw, this way:
 ```ruby
 module YourCustomMode
   def ascii_array
-    'your_ascii_animation_array'
+    ['ascci_0','ascii_1']
   end
   def rainbow_mp3
     'your_song_path'
@@ -84,8 +84,9 @@ module YourCustomMode
 end
 
 RainbowFormatter.configure do |config|
+  # Could be a module like above one or a already bundled mode
   config.formatter = YourCustomMode
-  # OR config.formatter = :tina_dream OR onw of already bundle modes below
+  # config.formatter = :tina_dream (or any already bundle modes below)
 end
 ```
 
