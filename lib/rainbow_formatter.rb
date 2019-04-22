@@ -4,15 +4,14 @@ require 'formatter/configuration'
 require 'formatter/common'
 require 'ostruct'
 require 'pry'
-
-RSpec::Support.require_rspec_core 'formatters/base_text_formatter'
+require 'rspec'
 
 class RainbowFormatter
   include Formatter::Common
 
   attr_reader :example_name, :ascii_array, :output
 
-  ::RSpec::Core::Formatters.register self, :start, :example_started, :example_passed, :example_pending, :example_failed,
+  RSpec::Core::Formatters.register self, :start, :example_started, :example_passed, :example_pending, :example_failed,
                                      :start_dump, :dump_summary
 
   BUNDLED_MODES = {
