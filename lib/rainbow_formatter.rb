@@ -5,13 +5,15 @@ require 'formatter/common'
 require 'ostruct'
 require 'pry'
 
+RSpec::Support.require_rspec_core 'formatters/base_text_formatter'
+
 class RainbowFormatter
   include Formatter::Common
 
   attr_reader :example_name, :ascii_array, :output
 
-  RSpec::Core::Formatters.register self, :start, :example_started, :example_passed, :example_pending, :example_failed,
-                                   :start_dump, :dump_summary
+  ::RSpec::Core::Formatters.register self, :start, :example_started, :example_passed, :example_pending, :example_failed,
+                                     :start_dump, :dump_summary
 
   BUNDLED_MODES = {
     tina_bike: Formatter::Custom::TinaBike,
