@@ -79,13 +79,19 @@ class RainbowFormatter
     tick(mark: FAIL)
   end
 
+  def dump_failed_summary
+    @failed_examples.each do |n|
+      output.puts "\n-> #{n.description}\n\n"
+      output.puts n.colorized_message_lines
+      output.puts "\n --> Exception backtrace: \n\n"
+      output.puts n.exception.backtrace.join("\n")
+    end
+  end
+
   def dump_summary(notification)
     duration = notification.duration
     summary = "\nYou've rainbowified for #{format_duration(duration)}\n".split(//).map { |c| rainbowify(c) }
-    @failed_examples.each do |n|
-      puts "\n-> #{n.description}\n\n"
-      puts n.colorized_message_lines
-    end
+    dump_failed_summary
     output.puts notification.colorized_message_lines if notification.respond_to?(:colorized_message_lines)
     output.puts summary.join
     output.puts notification.fully_formatted
