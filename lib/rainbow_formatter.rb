@@ -82,6 +82,8 @@ class RainbowFormatter
   def dump_summary(notification)
     duration = notification.duration
     summary = "\nYou've rainbowified for #{format_duration(duration)}\n".split(//).map { |c| rainbowify(c) }
+    outputs.puts notification.exception if notification.respond_to?(:exception)
+    outputs.puts notification.colorized_formatted_backtrace if notification.respond_to?(:colorized_formatted_backtrace)
     output.puts summary.join
     output.puts notification.fully_formatted
     dump_commands_to_rerun_failed_examples if respond_to?(:dump_commands_to_rerun_failed_examples)
